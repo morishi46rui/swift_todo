@@ -1,3 +1,10 @@
+//
+//  LoginView.swift
+//  todo
+//
+//  Created by USER on 2024/12/14.
+//
+
 import SwiftUI
 
 struct LoginView: View {
@@ -5,7 +12,7 @@ struct LoginView: View {
     @State private var password: String = ""
     @State private var isLoggedIn: Bool = false
     @State private var showError: Bool = false
-    
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -16,7 +23,7 @@ struct LoginView: View {
                     endPoint: .bottomTrailing
                 )
                 .ignoresSafeArea()
-                
+
                 VStack(spacing: 30) {
                     // タイトルセクション
                     VStack(spacing: 10) {
@@ -24,30 +31,30 @@ struct LoginView: View {
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
-                        
+
                         Text("Welcome to TODO App")
                             .font(.subheadline)
                             .foregroundColor(.white.opacity(0.8))
                     }
-                    
+
                     // 入力フィールドセクション
                     VStack(spacing: 15) {
-                        TextField("User Name", text: $username)
+                        TextField("🙂User Name", text: $username)
                             .padding()
                             .background(Color.white.opacity(0.9))
                             .cornerRadius(10)
                             .shadow(radius: 5)
                             .keyboardType(.asciiCapable)
                             .textInputAutocapitalization(.never)
-                        
-                        SecureField("Password", text: $password)
+
+                        SecureField("🔒Password", text: $password)
                             .padding()
                             .background(Color.white.opacity(0.9))
                             .cornerRadius(10)
                             .shadow(radius: 5)
                     }
                     .padding(.horizontal, 30)
-                    
+
                     Button(action: {
                         login()
                     }) {
@@ -65,7 +72,7 @@ struct LoginView: View {
                             .shadow(radius: 5)
                     }
                     .padding(.horizontal, 30)
-                    
+
                     // エラーメッセージ
                     if showError {
                         Text("ユーザー名またはパスワードが間違っています。")
@@ -73,41 +80,22 @@ struct LoginView: View {
                             .font(.footnote)
                             .padding(.top, -10)
                     }
-                    
+
                     Spacer()
                 }
                 .padding(.top, 50)
             }
             .navigationDestination(isPresented: $isLoggedIn) {
-                TaskListView()
+                TopView()
             }
         }
     }
-    
+
     func login() {
         if username == "" && password == "" {
             isLoggedIn = true
         } else {
             showError = true
-        }
-    }
-}
-
-// タスク一覧画面（ダミーデータ用）
-struct TaskListView: View {
-    var body: some View {
-        ZStack {
-            LinearGradient(
-                gradient: Gradient(colors: [Color.purple.opacity(0.6), Color.blue.opacity(0.6)]),
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
-            
-            Text("タスク一覧画面")
-                .font(.title)
-                .foregroundColor(.white)
-                .padding()
         }
     }
 }
