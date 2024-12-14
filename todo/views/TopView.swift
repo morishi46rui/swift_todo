@@ -40,6 +40,8 @@ struct TopView: View {
     }
 }
 
-#Preview {
-    TopView()
+struct TopView_Previews: PreviewProvider {
+    static var previews: some View {
+        TopView()
+    }
 }

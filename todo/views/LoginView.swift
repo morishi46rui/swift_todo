@@ -12,7 +12,7 @@ struct LoginView: View {
     @State private var password: String = ""
     @State private var isLoggedIn: Bool = false
     @State private var showError: Bool = false
-
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -23,7 +23,7 @@ struct LoginView: View {
                     endPoint: .bottomTrailing
                 )
                 .ignoresSafeArea()
-
+                
                 VStack(spacing: 30) {
                     // タイトルセクション
                     VStack(spacing: 10) {
@@ -31,12 +31,12 @@ struct LoginView: View {
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
-
+                        
                         Text("Welcome to TODO App")
                             .font(.subheadline)
                             .foregroundColor(.white.opacity(0.8))
                     }
-
+                    
                     // 入力フィールドセクション
                     VStack(spacing: 15) {
                         TextField("🙂User Name", text: $username)
@@ -46,7 +46,7 @@ struct LoginView: View {
                             .shadow(radius: 5)
                             .keyboardType(.asciiCapable)
                             .textInputAutocapitalization(.never)
-
+                        
                         SecureField("🔒Password", text: $password)
                             .padding()
                             .background(Color.white.opacity(0.9))
@@ -54,7 +54,7 @@ struct LoginView: View {
                             .shadow(radius: 5)
                     }
                     .padding(.horizontal, 30)
-
+                    
                     Button(action: {
                         login()
                     }) {
@@ -72,7 +72,7 @@ struct LoginView: View {
                             .shadow(radius: 5)
                     }
                     .padding(.horizontal, 30)
-
+                    
                     // エラーメッセージ
                     if showError {
                         Text("ユーザー名またはパスワードが間違っています。")
@@ -80,7 +80,7 @@ struct LoginView: View {
                             .font(.footnote)
                             .padding(.top, -10)
                     }
-
+                    
                     Spacer()
                 }
                 .padding(.top, 50)
@@ -90,7 +90,7 @@ struct LoginView: View {
             }
         }
     }
-
+    
     func login() {
         if username == "" && password == "" {
             isLoggedIn = true
@@ -100,6 +100,8 @@ struct LoginView: View {
     }
 }
 
-#Preview {
-    LoginView()
+struct LoginView_Previews: PreviewProvider {
+    static var previews: some View {
+        LoginView()
+    }
 }
